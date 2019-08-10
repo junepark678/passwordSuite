@@ -1,0 +1,11 @@
+This software requires a module called pyperclip to copy the passwords to the clipboard
+
+installing this is simple
+
+please run:
+
+pip install pyperclip
+
+or:
+
+pip3 install pyperclip

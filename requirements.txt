@@ -1,11 +1,14 @@
 This software requires a module called pyperclip to copy the passwords to the clipboard
+This softwate also requires a module call cryptography to encrypt the passwords.
 
-installing this is simple
+installing these are simple
 
 please run:
 
 pip install pyperclip
+pip install crytography
 
 or:
 
 pip3 install pyperclip
+pip3 install cryptography

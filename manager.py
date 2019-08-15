@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 
 #key = Fernet.generate_key()
 #with open("key.key", "wb") as keyFile:
-#    pickle.dump(key, keyFile)
+    #pickle.dump(key, keyFile)
 
 keyfile = open("key.key", "rb")
 key = keyfile.read()
@@ -41,12 +41,16 @@ if mode==1:
 
 elif mode==2:
     passName = input("What is the place you use the password ")
+    try:
+        with open("%s.pickle" % passName, "rb") as f:
+            f2 = Fernet(key)
+            dic = pickle.load(f)
+            passWord = dic["passWord"]
+            wordPass = f2.decrypt(token=passWord)
+            wordPass = str(wordPass, "utf-8")
+            dic = dict(passName = passName, passWord = wordPass)
+            print(dic)
+    except FileNotFoundError:
 
-    with open("%s.pickle" % passName, "rb") as f:
-        f2 = Fernet(key)
-        dic = pickle.load(f)
-        passWord = dic["passWord"]
-        wordPass = f2.decrypt(token=passWord)
-        wordPass = str(wordPass, "utf-8")
-        dic = dict(passName = passName, passWord = wordPass)
-        print(dic)
+        raise FileNotFoundError("The Password Was Not Found")
+

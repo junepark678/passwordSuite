@@ -4,13 +4,20 @@
 This contains a very low featured password generator and manager. All contributions welcome.
 
 
-## Reqirements
+## Requirements
 
-pyperclip
-
-install command:
-
-pip install pyperclip
+pyperclip<br>
+install command:<br>
+```pip install pyperclip```
+<br><br>
+argparse<br>
+install command<br>
+```pip install argparse```
+<br><br>
+cryptography<br>
+install command<br>
+```pip install cryptography```
+<br><br>
 
 ### Python Version
 

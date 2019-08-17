@@ -6,6 +6,7 @@ installing these are simple
 please run:
 
 pip install pyperclip
+pip install argparse
 pip install crytography
 
 or:

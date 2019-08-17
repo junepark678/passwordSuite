@@ -1,4 +1,29 @@
-import random, pyperclip
+import random, pyperclip, argparse
+
+
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--minAlpha', help='Minimum alphabetical characters to generate', type=int, default=8)
+parser.add_argument('--maxAlpha', help='Maximum alphabetical characters to generate', type=int, default=8)
+parser.add_argument('--minNum', help='Minimum numerical characters to generate', type=int, default=3)
+parser.add_argument('--maxNum', help='Maximum numerical characters to generate', type=int, default=3)
+parser.add_argument('--minSym', help='Minimum symbolic characters to generate', type=int, default=2)
+parser.add_argument('--maxSym', help='Maximum symbolic characters to generate', type=int, default=2)
+
+parser.add_argument('-p', '--private', help='Hide password in the console window', action='store_true')
+
+args = parser.parse_args()
+
+
+'''Handling error prone input'''
+if args.minAlpha > args.maxAlpha:
+    args.maxAlpha = args.minAlpha + 100
+if args.minNum > args.maxNum:
+    args.maxNum = args.minNum + 100
+if args.minSym > args.maxSym:
+    args.maxSym = args.minSym + 100
+
 
 password = ""
 
@@ -19,13 +44,13 @@ for num in range(48, 57):
     nums.append(chr(num))
 
 
-for x in range(8):
+for x in range( random.randint(args.minAlpha, args.maxAlpha) ):
     password = password + random.choice(alphabet)
 
-for x in range(3):
+for x in range(random.randint(args.minNum, args.maxNum)):
     password = password + random.choice(nums)
 
-for x in range(2):
+for x in range(random.randint(args.minSym, args.maxSym)):
     password = password + random.choice(symbols)
 
 print(password)

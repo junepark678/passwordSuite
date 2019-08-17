@@ -22,3 +22,11 @@ install command<br>
 ### Python Version
 
 this was built for python3
+
+
+### Example Use
+
+```python passwordGenorater.py```
+```python passwordGenorater.py -p```
+```python passwordGenorater.py --minAlpha="12" --maxSym="8"```
+```python passwordGenorater.py --minNum="5" --private```

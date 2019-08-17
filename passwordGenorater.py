@@ -1,36 +1,73 @@
-import random, pyperclip
-
-password = ""
-
-symbols = []
-nums = []
-
-alphabet = []
-for letter in range(97, 123):
-    alphabet.append(chr(letter))
-
-for symbol in range(33, 64):
-    symbols.append(chr(symbol))
-
-for num in range(48, 57):
-    nums.append(chr(num))
+import random
+import pyperclip
+import argparse
 
 
-for x in range(8):
-    password = password + random.choice(alphabet)
+def setupArgs():
+    parser = argparse.ArgumentParser()
 
-for x in range(3):
-    password = password + random.choice(nums)
+    parser.add_argument('--minAlpha', help='Minimum alphabetical characters to generate', type=int, default=8)
+    parser.add_argument('--maxAlpha', help='Maximum alphabetical characters to generate', type=int, default=8)
+    parser.add_argument('--minNum', help='Minimum numerical characters to generate', type=int, default=3)
+    parser.add_argument('--maxNum', help='Maximum numerical characters to generate', type=int, default=3)
+    parser.add_argument('--minSym', help='Minimum symbolic characters to generate', type=int, default=2)
+    parser.add_argument('--maxSym', help='Maximum symbolic characters to generate', type=int, default=2)
 
-for x in range(2):
-    password = password + random.choice(symbols)
+    parser.add_argument('-p', '--private', help='Hide password in the console window', action='store_true')
 
-print(password)
+    args = parser.parse_args()
 
-pyperclip.copy(password)
+    '''Handling error prone input'''
+    if args.minAlpha > args.maxAlpha:
+        args.maxAlpha = args.minAlpha + (args.minAlpha*0.5)
+    if args.minNum > args.maxNum:
+        args.maxNum = args.minNum + (args.minNum*0.5)
+    if args.minSym > args.maxSym:
+        args.maxSym = args.minSym + (args.minSym*0.5)
 
-print("the password was copied to your clipboard")
+    return args
 
-print("Quick Tip: Use a password manager")
 
-print("These passwords are hard to memorize")
+def generatePass(args):
+    password = ""
+
+    symbols = []
+    nums = []
+    alphabet = []
+
+    for letter in range(97, 123):
+        alphabet.append(chr(letter))
+
+    for symbol in range(33, 47):
+        symbols.append(chr(symbol))
+
+    for symbol in range(58, 64):
+        symbols.append(chr(symbol))
+
+    for num in range(48, 57):
+        nums.append(chr(num))
+
+    for x in range(random.randint(args.minAlpha, args.maxAlpha)):
+        password = password + random.choice(alphabet)
+    for x in range(random.randint(args.minNum, args.maxNum)):
+        password = password + random.choice(nums)
+    for x in range(random.randint(args.minSym, args.maxSym)):
+        password = password + random.choice(symbols)
+    return password
+
+
+if __name__ == '__main__':
+
+    args = setupArgs()
+
+    password = generatePass(args)
+
+    if not args.private:
+        print(password)
+    else:
+        print('**************')
+
+    pyperclip.copy(password)
+    print("the password was copied to your clipboard")
+    print("Quick Tip: Use a password manager")
+    print("These passwords are hard to memorize")

@@ -9,7 +9,10 @@ alphabet = []
 for letter in range(97, 123):
     alphabet.append(chr(letter))
 
-for symbol in range(33, 64):
+for symbol in range(33, 47):
+    symbols.append(chr(symbol))
+
+for symbol in range(58, 64):
     symbols.append(chr(symbol))
 
 for num in range(48, 57):

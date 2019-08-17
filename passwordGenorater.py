@@ -1,4 +1,6 @@
-import random, pyperclip, argparse
+import random
+import pyperclip
+import argparse
 
 
 def setupArgs():
@@ -15,16 +17,16 @@ def setupArgs():
 
     args = parser.parse_args()
 
-
     '''Handling error prone input'''
     if args.minAlpha > args.maxAlpha:
-        args.maxAlpha = args.minAlpha + 100
+        args.maxAlpha = args.minAlpha + (args.minAlpha*0.5)
     if args.minNum > args.maxNum:
-        args.maxNum = args.minNum + 100
+        args.maxNum = args.minNum + (args.minNum*0.5)
     if args.minSym > args.maxSym:
-        args.maxSym = args.minSym + 100
+        args.maxSym = args.minSym + (args.minSym*0.5)
 
     return args
+
 
 def generatePass(args):
     password = ""
@@ -45,16 +47,13 @@ def generatePass(args):
     for num in range(48, 57):
         nums.append(chr(num))
 
-
-    for x in range( random.randint(args.minAlpha, args.maxAlpha) ):
+    for x in range(random.randint(args.minAlpha, args.maxAlpha)):
         password = password + random.choice(alphabet)
     for x in range(random.randint(args.minNum, args.maxNum)):
         password = password + random.choice(nums)
     for x in range(random.randint(args.minSym, args.maxSym)):
         password = password + random.choice(symbols)
-
     return password
-
 
 
 if __name__ == '__main__':

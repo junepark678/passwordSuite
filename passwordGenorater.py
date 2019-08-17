@@ -53,7 +53,10 @@ for x in range(random.randint(args.minNum, args.maxNum)):
 for x in range(random.randint(args.minSym, args.maxSym)):
     password = password + random.choice(symbols)
 
-print(password)
+if not args.private:
+    print(password)
+else:
+    print('**************')
 
 pyperclip.copy(password)
 

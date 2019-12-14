@@ -12,6 +12,9 @@ install command:
 
 pip install pyperclip
 
-### Python Version
+## Python Version
 
-this was built for python3
+This was built for python3
+
+## Download
+please use git clone or save to your computer

@@ -17,4 +17,4 @@ pip install pyperclip
 This was built for python3
 
 ## Download
-please use git clone or save to your computer
+please use git clone https://github.com/junepark678/passwordSuite.git or save to your computer
